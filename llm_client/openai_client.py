@@ -1,5 +1,5 @@
-#* Project: AI Agent Prototype
-#ai_agent_prototype/llm_client/openai_client.py
+# * Project: AI Agent Prototype
+# ai_agent_prototype/llm_client/openai_client.py
 # Description: This module loads the OpenAI API key from a file and creates a client
 # object for the OpenAI API.
 
@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 
-#! Class: ApiKeyLoader: Loads the OpenAI API key from a .env file
 class ApiKeyLoader:
+    # * Loads the OpenAI API key from a .env file
     """
     A utility class to load the OpenAI API key from a specified .env file.
 
@@ -26,7 +26,7 @@ class ApiKeyLoader:
         ...     print(f"Failed to load API key: {e}")
     """
 
-    def __init__(self, env_path: Path):
+    def __init__(self, env_path: Path) -> None:
         """
         Initializes the ApiKeyLoader with the path to the .env file.
 
@@ -37,11 +37,13 @@ class ApiKeyLoader:
             ValueError: If the provided path does not exist or is not a file.
         """
         if not env_path.exists():
-            raise ValueError(f"Invalid path: '{env_path}' does not exist.")
+            msg = f"Invalid path: '{env_path}' does not exist."
+            raise ValueError(msg)
         if not env_path.is_file():
-            raise ValueError(f"'{env_path}' is not a valid file.")
+            msg = f"'{env_path}' is not a valid file."
+            raise ValueError(msg)
 
-        self.env_path = env_path
+        self.env_path: Path = env_path
 
     def get_openai_key(self) -> str:
         """
@@ -54,32 +56,26 @@ class ApiKeyLoader:
             ValueError: If OPENAI_API_KEY is missing or empty in the .env file.
         """
         load_dotenv(self.env_path)
-        api_key = os.getenv("OPENAI_API_KEY")
+        api_key: str | None = os.getenv("OPENAI_API_KEY")
 
         if not api_key:
-            raise ValueError("OPENAI_API_KEY is not set in the .env file.")
+            msg = "The OPENAI_API_KEY environment variable is not set in the .env file."
+            raise ValueError(msg)
         return api_key
 
 
-#! Class: OpenAIClient: A high-level abstraction for the OpenAI API client
 class OpenAIClient:
+    # A high-level abstraction for the OpenAI API client
     """
     A high-level abstraction layer for interacting with the OpenAI API.
-
     This class:
     - Encapsulates client configuration
     - Provides a simplified interface
-    - Supports lazy initialization and caching
-    - Enables easy testing/extensibility
 
     Args:
-        api_key (str): OpenAI API key (must be provided externally).
-
-    Example:
+        api_key (str): OpenAI API key (must be provided externally)
         >>> client = OpenAIClient("your-api-key")
         >>> openai_client = client.client  # Lazy-loaded property
-        >>> # Or:
-        >>> openai_client = client.get_client()  # Explicit method
     """
 
     def __init__(self, api_key: str) -> None:
@@ -92,11 +88,12 @@ class OpenAIClient:
         Raises:
             ValueError: If api_key is empty or None.
         """
-        if not api_key:
-            raise ValueError("OpenAI API key is required")
 
-        self.api_key = api_key
-        self._client: OpenAI | None = None  #* Lazy-loaded client
+        if not api_key:
+            msg = "OpenAI API key is required"
+            raise ValueError(msg)
+        self.api_key: str = api_key
+        self._client: OpenAI | None = None  # Cache for the OpenAI client
 
     @property
     def client(self) -> OpenAI:
@@ -109,18 +106,9 @@ class OpenAIClient:
         Note:
             The client is created on first access (singleton pattern).
         """
-        if self._client is None:  #* first access, creates the client
+        if self._client is None:  # * first access, creates the client
             self._client = self._create_client()
         return self._client
-
-    def get_client(self) -> OpenAI:
-        """
-        Alternative access method for the OpenAI client (explicit version).
-
-        Returns:
-            OpenAI: Configured OpenAI client instance.
-        """
-        return self.client
 
     def _create_client(self) -> OpenAI:
         """
@@ -142,14 +130,16 @@ class OpenAIClient:
 
 
 if __name__ == "__main__":
-    #* Example usage
+    # * Example usage
     try:
         env_path: Path = Path(__file__).resolve().parent / ".env"
-        loader:ApiKeyLoader = ApiKeyLoader(Path(env_path))
+        loader: ApiKeyLoader = ApiKeyLoader(Path(env_path))
         api_key = loader.get_openai_key()
-        print(f"Loaded OpenAI API key: {api_key}[:10]...") #* Masked output for security
+        print(
+            f"Loaded OpenAI API key: {api_key}[:10]..."
+        )  # * Masked output for security
         client = OpenAIClient(api_key)
-        openai_client = client.client  #* Lazy-loaded property
+        openai_client = client.client  # * Lazy-loaded property
         print(f"OpenAI client created: {openai_client}[:10]")
     except ValueError as e:
         print(f"Error: {e}")
