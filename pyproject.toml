@@ -104,3 +104,8 @@ addopts = "-s --color=yes --tb=short"
 # os testes em `tests/` importem os módulos de `src/` sem erros.
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.2",
+]

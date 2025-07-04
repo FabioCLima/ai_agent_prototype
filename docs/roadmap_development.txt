@@ -117,10 +117,11 @@ Veja o arquivo `docs/architecture.md` para detalhes de arquitetura e próximos p
 ## **3. Roadmap Incremental de Desenvolvimento**
 
 ### **Fase 1: Fundamentos**
-- [ ] Criar estrutura de diretórios e arquivos iniciais.
+- [x] Criar estrutura de diretórios e arquivos iniciais.
 - [ ] Implementar a classe `Tool` (abstração para funções externas).
-- [ ] Implementar a classe `Memory` (gestão do histórico).
-- [ ] Implementar o cliente LLM básico (ex: OpenAI).
+- [x] Implementar a classe `Memory` (gestão do histórico).
+       --[x] Usei uma classe Message para a definição de um tipo para as mensagens.
+- [x] Implementar o cliente LLM básico (ex: OpenAI).
 
 ### **Fase 2: Agente Básico**
 - [ ] Implementar a classe `Agent`:
