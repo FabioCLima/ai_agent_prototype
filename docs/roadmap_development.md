@@ -1,5 +1,3 @@
-Perfeito! Aqui está uma sugestão completa para você começar seu projeto de Agente de IA de forma profissional, organizada e didática.
-
 ---
 
 ## **1. Estrutura Inicial de Diretórios**
@@ -46,6 +44,8 @@ ai_agent_prototype/
 
 ---
 
+# Documentação do Projeto
+
 ## **2. Exemplos de Documentação**
 
 ### **README.md**
@@ -59,6 +59,8 @@ Este projeto é um protótipo modular de um Agente de IA capaz de decidir quando
 
 - `agent/` — Lógica do agente e orquestração de decisões
 - `tools/` — Ferramentas externas disponíveis para o agente
+   - `tool.py` — Classe abstrata para ferramentas
+   
 - `memory/` — Gerenciamento do histórico da conversa
 - `llm_client/` — Integração com modelos de linguagem
 - `tests/` — Testes unitários
@@ -67,19 +69,26 @@ Este projeto é um protótipo modular de um Agente de IA capaz de decidir quando
 ## Como rodar
 
 1. Instale as dependências:
-   ```
+
+   ```python
    pip install -r requirements.txt
+
    ```
+
 2. Configure sua chave de API no arquivo `.env` (veja `.env.example`).
 3. Execute o orquestrador:
-   ```
+
+   ```python
+
    python orchestrator/main.py
+
    ```
 
 ## Roadmap
 
 Veja o arquivo `docs/architecture.md` para detalhes de arquitetura e próximos passos.
-```
+
+```markdown
 
 ---
 
@@ -117,6 +126,7 @@ Veja o arquivo `docs/architecture.md` para detalhes de arquitetura e próximos p
 ## **3. Roadmap Incremental de Desenvolvimento**
 
 ### **Fase 1: Fundamentos**
+
 - [x] Criar estrutura de diretórios e arquivos iniciais.
 - [ ] Implementar a classe `Tool` (abstração para funções externas).
 - [x] Implementar a classe `Memory` (gestão do histórico).
@@ -124,6 +134,7 @@ Veja o arquivo `docs/architecture.md` para detalhes de arquitetura e próximos p
 - [x] Implementar o cliente LLM básico (ex: OpenAI).
 
 ### **Fase 2: Agente Básico**
+
 - [ ] Implementar a classe `Agent`:
   - [ ] Integração com memória.
   - [ ] Integração com LLM.
@@ -131,16 +142,19 @@ Veja o arquivo `docs/architecture.md` para detalhes de arquitetura e próximos p
 - [ ] Implementar um orquestrador simples (`main.py`) para rodar o fluxo.
 
 ### **Fase 3: Function Calling**
+
 - [ ] Permitir que o agente detecte e execute tool calls sugeridas pelo LLM.
 - [ ] Implementar exemplo de ferramenta (ex: exponenciação).
 - [ ] Garantir que o fluxo de tool_call → execução → resposta esteja funcionando.
 
 ### **Fase 4: Testes e Documentação**
+
 - [ ] Escrever testes unitários para cada componente.
 - [ ] Documentar cada classe e função com docstrings e exemplos.
 - [ ] Atualizar README e docs de arquitetura.
 
 ### **Fase 5: Extensões e Refino**
+
 - [ ] Adicionar mais ferramentas de exemplo.
 - [ ] Permitir múltiplas tool calls em uma mesma interação.
 - [ ] Melhorar tratamento de erros e logging.
