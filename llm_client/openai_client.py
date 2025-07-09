@@ -3,6 +3,8 @@
 # Description: This module loads the OpenAI API key from a file and creates a client
 # object for the OpenAI API.
 
+'''A simple AI agent '''
+
 import os
 from pathlib import Path
 
@@ -132,14 +134,15 @@ class OpenAIClient:
 if __name__ == "__main__":
     # * Example usage
     try:
-        env_path: Path = Path(__file__).resolve().parent / ".env"
-        loader: ApiKeyLoader = ApiKeyLoader(Path(env_path))
-        api_key = loader.get_openai_key()
+        env_file_path: Path = Path(__file__).resolve().parent / ".env"
+        loader: ApiKeyLoader = ApiKeyLoader(Path(env_file_path))
+        openai_api_key = loader.get_openai_key()
         print(
-            f"Loaded OpenAI API key: {api_key}[:10]..."
+            f"Loaded OpenAI API key: {openai_api_key}[:10]..."
         )  # * Masked output for security
-        client = OpenAIClient(api_key)
+        client = OpenAIClient(openai_api_key)
         openai_client = client.client  # * Lazy-loaded property
         print(f"OpenAI client created: {openai_client}[:10]")
     except ValueError as e:
+        print(f"Error: {e}")
         print(f"Error: {e}")

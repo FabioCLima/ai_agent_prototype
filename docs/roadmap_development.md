@@ -72,16 +72,13 @@ Este projeto é um protótipo modular de um Agente de IA capaz de decidir quando
 
    ```python
    pip install -r requirements.txt
-
    ```
 
-2. Configure sua chave de API no arquivo `.env` (veja `.env.example`).
-3. Execute o orquestrador:
+1. Configure sua chave de API no arquivo `.env` (veja `.env.example`).
+1. Execute o orquestrador:
 
    ```python
-
    python orchestrator/main.py
-
    ```
 
 ## Roadmap
@@ -128,18 +125,18 @@ Veja o arquivo `docs/architecture.md` para detalhes de arquitetura e próximos p
 ### **Fase 1: Fundamentos**
 
 - [x] Criar estrutura de diretórios e arquivos iniciais.
-- [ ] Implementar a classe `Tool` (abstração para funções externas).
+- [x] Implementar a classe `Tool` (abstração para funções externas).
 - [x] Implementar a classe `Memory` (gestão do histórico).
        --[x] Usei uma classe Message para a definição de um tipo para as mensagens.
 - [x] Implementar o cliente LLM básico (ex: OpenAI).
 
 ### **Fase 2: Agente Básico**
 
-- [ ] Implementar a classe `Agent`:
-  - [ ] Integração com memória.
-  - [ ] Integração com LLM.
-  - [ ] Registro e chamada de ferramentas.
-- [ ] Implementar um orquestrador simples (`main.py`) para rodar o fluxo.
+- [x] Implementar a classe `Agent`:
+  - [x] Integração com memória.
+  - [x] Integração com LLM.
+  - [x] Registro e chamada de ferramentas.
+- [x] Implementar um orquestrador simples (`main.py`) para rodar o fluxo.
 
 ### **Fase 3: Function Calling**
 
